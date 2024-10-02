@@ -67,7 +67,7 @@ tm_shape(world_vector) +
               boarder.col = "black",
               lwd = 0.5,
               lty = "dashed")
-``` 
+```
 
 ```{r}
 tm_shape(world_vector) +
@@ -149,4 +149,3 @@ tmap_mode("plot") #sets it back to static
 tmap_save(map1, here("tmap_example.png"))
   
 ```
-

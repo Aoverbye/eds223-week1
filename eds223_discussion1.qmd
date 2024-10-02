@@ -1,0 +1,49 @@
+---
+title: "eds223_lab1"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library(here)
+library(tidyverse)
+library(stars)
+library(sf)
+library(tmap)
+library(rcartocolor)
+```
+
+```{r}
+ei_points <- sf::read_sf(here::here("data", "easter_island", "ei_points.gpkg"))
+volcanoes <- subset(ei_points, type == "volcano")
+ei_elev <- stars::read_stars(here::here("data", "easter_island", "ei_elev.tif"))
+ei_borders <- sf::read_sf(here::here("data", "easter_island", "ei_border.gpkg"))
+ei_roads <- sf::read_sf(here::here("data", "easter_island", "ei_roads.gpkg"))
+```
+
+```{r}
+tm_shape(ei_borders) +
+  tm_borders() +
+  tm_shape(ei_elev) +
+  tm_raster(
+    palette = c("lightgreen", "darkgreen"),
+    title = "Elevation") +
+  tm_shape(ei_roads) +
+  tm_lines() +
+  tm_shape(volcanoes) +
+  tm_symbols(
+    size = .5,
+    shape = 24,
+    col = "orange",) +
+  tm_compass(
+    show.labels = 2,
+    size = 1.5,
+    text.size = .75,
+    position = c("right", "top")) +
+  tm_scale_bar()
+  
+`````````
+
+
+
